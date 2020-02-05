@@ -1,0 +1,81 @@
+
+<style include="app-shared-styles">
+
+  :host {
+    display:          none;
+    position:         fixed;
+    top:              0px;
+    bottom:           0px;
+    left:             0px;
+    right:            0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition:       opacity 0.2s ease-in;
+    opacity:          0;
+    z-index:          10;
+  }
+
+  #overlay {
+    background-color: transparent;
+  }
+
+  #content {
+    display:         flex;
+    justify-content: center;
+    align-items:     center;
+    height:          100vh;
+  }
+
+  paper-card {
+    background-color:          var(--modal-card-background-color, var(--app-background-color));
+    color:                     var(--modal-card-color, var(--dark-text-color));
+    --paper-card-header-color: var(--modal-card-header-color, var(--dark-text-color));
+  }
+
+  .card-content {
+    max-height: calc(100vh - 174px);
+    overflow-y: auto;
+  }
+
+  *[hidden] {
+    display: none;
+  }
+
+</style>
+
+
+<app-overlay id="overlay" 
+             modal 
+             prebuilt-animation="[[prebuiltAnimation]]">
+
+  <div id="content">
+
+    <paper-card class="shared-paper-card"
+                heading="[[heading]]" 
+                on-click="__cardClicked">
+      <div class="card-content" 
+           hidden="[[_hideCardContent]]"> 
+
+        <slot id="contentSlot"
+              name="card-content-slot"
+              on-slotchange="__contentSlotChange">
+        </slot>
+
+      </div>
+
+      <div class="card-actions" 
+           hidden="[[_hideCardActions]]">
+
+        <slot id="actionsSlot" 
+              name="card-actions-slot"
+              on-slotchange="__actionsSlotChange">
+        </slot>
+
+      </div>
+
+      <slot name="card-overlay-slot"></slot>
+      
+    </paper-card>
+
+  </div>
+  
+</app-overlay>
