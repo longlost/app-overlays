@@ -12,6 +12,10 @@
     transition:       opacity 0.2s ease-in;
     opacity:          0;
     z-index:          10;
+    --modal-card-background-color: var(--app-background-color);
+    --modal-card-color:            var(--dark-text-color);
+    --modal-card-header-color:     var(--dark-text-color);
+    --modal-card-content-padding:  0px 16px 8px 16px;
   }
 
   #overlay {
@@ -25,15 +29,20 @@
     height:          100vh;
   }
 
-  paper-card {
-    background-color:          var(--modal-card-background-color, var(--app-background-color));
-    color:                     var(--modal-card-color, var(--dark-text-color));
-    --paper-card-header-color: var(--modal-card-header-color, var(--dark-text-color));
+  /* Must use id here to override shared-paper-card class styles */
+  #card {
+    background-color:          var(--modal-card-background-color);
+    color:                     var(--modal-card-color);
+    --paper-card-header-color: var(--modal-card-header-color);
   }
 
-  .card-content {
+  /* Must use id here to override paper-card card-content class styles */
+  #card-content {
     max-height: calc(100vh - 174px);
     overflow-y: auto;
+    --paper-card-content: {
+      padding: var(--modal-card-content-padding);
+    };
   }
 
   *[hidden] {
@@ -49,10 +58,12 @@
 
   <div id="content">
 
-    <paper-card class="shared-paper-card"
+    <paper-card id="card"
+                class="shared-paper-card"
                 heading="[[heading]]" 
                 on-click="__cardClicked">
-      <div class="card-content" 
+      <div id="card-content"
+           class="card-content" 
            hidden="[[_hideCardContent]]"> 
 
         <slot id="contentSlot"
