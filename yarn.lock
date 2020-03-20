@@ -25,10 +25,10 @@
   dependencies:
     "@polymer/iron-iconset-svg" "^3.0.1"
 
-"@longlost/app-shared-styles@^2.0.12":
-  version "2.0.12"
-  resolved "https://registry.yarnpkg.com/@longlost/app-shared-styles/-/app-shared-styles-2.0.12.tgz#de0e4d40b8da6986b3c49dcc1d69aaebd6d8b891"
-  integrity sha512-C5DKKZRSKf29a6Lri+w1FDcwO1m3dD0poyGdrEy0AaOsqSvsL1YCIlgQJ4AW+awBu3r58ratU8JjQRPTjGpGyQ==
+"@longlost/app-shared-styles@^2.0.13":
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/@longlost/app-shared-styles/-/app-shared-styles-2.0.13.tgz#7a800d088a19bcda6288ff20d19cc9772ff36223"
+  integrity sha512-4PqO8cv8xbBMvUcaSWxnLVUQbExwVT8wR7d0KSzCyqo1WRGWaCE+4/Dyxrz12czBGPTwSuSbaA4iq/3KSmJ/Mg==
   dependencies:
     "@polymer/polymer" "^3.3.1"
 

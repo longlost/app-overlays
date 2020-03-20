@@ -8,8 +8,8 @@
     --overlay-toolbar-pointer-events:             auto;
     --overlay-toolbar-background-parallax-height: 140%;
     --overlay-toolbar-vignette-background:        radial-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
-    --overlay-toolbar-vignette-opacity:         	0.3;
-    --overlay-bottom-toolbar-text-width:        	100%;
+    --overlay-toolbar-vignette-opacity:           0.3;
+    --overlay-bottom-toolbar-text-width:          100%;
     display:          none;
     position:         absolute;
     top:              0px;
@@ -165,9 +165,12 @@
       </div>
 
       <app-toolbar id="topToolbar">
-        <paper-icon-button icon="app-icons:arrow-back" 
+
+        <paper-icon-button hidden="[[noBackButton]]"
+                           icon="app-icons:arrow-back" 
                            on-click="__backButtonClicked">
         </paper-icon-button>
+
         <div id="overlayTitleDiv" 
              class="noSelect push-right truncate">
           [[title]]
@@ -246,9 +249,11 @@
 
         <slot name="header-background-slot"></slot>
 
-        <paper-icon-button icon="app-icons:arrow-back" 
+        <paper-icon-button hidden="[[noBackButton]]"
+                           icon="app-icons:arrow-back" 
                            on-click="__backButtonClicked">
         </paper-icon-button>
+        
         <div main-title 
              class="noSelect push-right truncate">
           [[title]]
