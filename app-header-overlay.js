@@ -1,6 +1,6 @@
 
 /**
-	*
+  *
   * `app-header-overlay``
   *   
   *   Styling:
@@ -136,7 +136,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
       // Scrollable content div ref used by app-shell overlay controller.
       content: Object,
 
-      disableAutoSticky: Boolean,      
+      disableAutoSticky: Boolean, 
 
       disableCondense: {
         type: Boolean,
@@ -157,6 +157,8 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
         type: Number,
         value: 1
       },
+
+      noBackButton: Boolean,
 
       parentControlsExits: Boolean,
 
@@ -283,24 +285,28 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
   __computeBottomToolbarText(bottomToolbarText, title, topTitle) {
     if (topTitle) { return bottomToolbarText; }
+    
     return bottomToolbarText ? bottomToolbarText : title;
   }
 
   
   __computeHeaderIsTall(headerSize) {
     if (headerSize === undefined) { return; }
+
     return headerSize > 1;
   }
 
 
   __computeHeaderScrollThreashold(headerSize) {
     if (headerSize === undefined) { return; }
+
     return 1 - (1 / headerSize);
   }
 
 
   __computeParallaxTravel(parallaxHeight, headerHeight) {
     if (parallaxHeight === undefined || headerHeight === undefined) { return; }
+
     return (parallaxHeight - headerHeight) / 2;
   }
 
@@ -336,6 +342,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
   __disableParallaxChanged(bool) {
     if (!bool) { return; }
+
     this.updateStyles({
       '--overlay-toolbar-background-parallax-height': '100%'
     });
@@ -387,7 +394,9 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __setupAfterDomIfStamps() {
-    listen(this, 'dom-change', async (event, key) => {
+
+    this.addEventListener('dom-change', async (event, key) => {
+
       const templateId = getRootTarget(event).id;
 
       if (templateId === 'smallHeaderDomIf' || templateId === 'tallHeaderDomIf') {
@@ -460,7 +469,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
   __placeFab() {
     const halfFabHeight = 28;
     const top           = this._headerHeight - halfFabHeight;
-    this._fabContainer.style.top     = `${top}px`;
+    this._fabContainer.style.top = `${top}px`;
 
     // Opacity hides flicker of fab before 
     // being correctly placed on the header.
@@ -503,7 +512,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
     const finalSize = 1 / size;
     const scale     = ((size - 1) * fade) / size + finalSize;
     this._toolbarBackgroundVignette.style.transform = `translateY(${top / 2}px) scaleY(${scale})`;
-    this._toolbarBackgroundContainer.style.opacity = `${fade}`;
+    this._toolbarBackgroundContainer.style.opacity  = `${fade}`;
 
     if (!this.disableParallax) {
       this._toolbarBackgroundParallax.style.transform = `translateY(${parallax}px)`;
@@ -533,10 +542,12 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   async __setupToolbarButtonScrollAction() {
+
     // Avoid race condition with first open and dom-if stamping.
     if (!this.header) { return; }
 
     if (this._fabContainer) {
+
       // Toggled on with every open and off on reset.
       this._fabContainer.style.willChange = 'transform';
     }
@@ -548,8 +559,10 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
     const setup = () => {
       const {progress, top} = this.header.getScrollState();
+
       if (this._headerIsTall) {
         this.__toggleButtonsWithHeaderState(progress);
+
         if (this._toolbarBackgroundNodePresent) {
           this.__controlToolbarBackgroundEffects(progress, top);
         }
@@ -562,6 +575,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
     this._scrollKey = listen(document, 'scroll', () => {
       window.requestAnimationFrame(setup);
     });
+
     setup();
   }
 
@@ -621,9 +635,11 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
   // Overwriting overlay-mixin method.
   __resetImplementation() {
+
     if (this._fabContainer) {
       this._fabContainer.style.willChange = 'auto';
     }
+
     this.__cancelToolbarButtonScrollAction(this._scrollKey);
   }
 
