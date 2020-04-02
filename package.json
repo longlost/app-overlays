@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/longlost/app-overlays#readme",
   "dependencies": {
-    "@longlost/animation": "^1.0.5",
+    "@longlost/animation": "^2.0.0",
     "@longlost/app-element": "^1.1.1",
     "@longlost/app-icons": "^1.0.11",
     "@longlost/app-shared-styles": "^2.0.13",

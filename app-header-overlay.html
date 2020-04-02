@@ -110,6 +110,7 @@
 
   #bottomToolbarButtonsContainer.fade-out {
     opacity: 0;
+    pointer-events: none;
   }
 
   #bottomToolbarTabsContainer {
@@ -147,7 +148,7 @@
             strip-whitespace>
             
     <!-- app-header effects set imperitively. -->
-    <app-header id="overlayHeader" 
+    <app-header id="overlayHeader"
                 slot="header" 
                 scroll-target="document"
                 threshold="[[threshold]]"
@@ -237,7 +238,7 @@
             is="dom-if" 
             if="[[!_headerIsTall]]"
             strip-whitespace>
-    <app-header id="overlayHeader" 
+    <app-header id="overlayHeader"
                 slot="header" 
                 scroll-target="document"
                 condenses 
