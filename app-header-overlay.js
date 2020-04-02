@@ -138,6 +138,9 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
       disableAutoSticky: Boolean, 
 
+      // Defeat parallax and fade out
+      disableBackgroundEffects: Boolean,
+
       disableCondense: {
         type: Boolean,
         value: false
@@ -563,7 +566,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
       if (this._headerIsTall) {
         this.__toggleButtonsWithHeaderState(progress);
 
-        if (this._toolbarBackgroundNodePresent) {
+        if (this._toolbarBackgroundNodePresent && !this.disableBackgroundEffects) {
           this.__controlToolbarBackgroundEffects(progress, top);
         }
       }
