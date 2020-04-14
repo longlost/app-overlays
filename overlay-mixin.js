@@ -222,6 +222,7 @@ export const OverlayMixin = superClass => {
 
 
 	  __runAnimation(type) {
+	  	
   		if (this.customAnimation) {
         return customAnimation(this.customAnimation[type]);
       } 
@@ -259,8 +260,19 @@ export const OverlayMixin = superClass => {
 	  	if (this.modal) {
 
 	  		// Disable scrolling.
-	  		this.style.minHeight = '100vh';
-	  		this.style.position  = 'fixed';
+	  		//
+	  		// Not using min-height here since it
+	  		// is breaks on mobile Safari since its
+	  		// bottom nav bar is not factored in.
+	  		this.style['position']   = 'fixed';
+	  		this.style['top'] 			 = '0px';
+	  		this.style['right'] 		 = '0px';
+	  		this.style['bottom'] 		 = '0px';
+	  		this.style['left'] 			 = '0px';
+	  		this.style['min-height'] = 'unset';
+	  		this.style['width'] 		 = 'unset';
+	  		this.style['padding'] 	 = '0px';
+
 	  		enableScrolling(false);
 	  	}
 
@@ -276,8 +288,10 @@ export const OverlayMixin = superClass => {
 	  async open() {
       try {
       	const detail = {node: this};
+
       	this.fire('overlay-preparing-to-open', detail);
-        this.style.display = 'block';
+
+        this.style['display'] = 'block';
 
         await schedule();
 
@@ -287,8 +301,8 @@ export const OverlayMixin = superClass => {
         await schedule();
 		  	await this.__runAnimation('open');
 
-      	this.style.transform = 'none';
-        this.style.opacity 	 = '1';
+      	this.style['transform'] = 'none';
+        this.style['opacity'] 	= '1';
 
 		  	await  this.__postOpenImplementation();
 
@@ -311,6 +325,7 @@ export const OverlayMixin = superClass => {
 	  __resetImplementation() {
 
     	if (this.modal) {
+
 	  		// Enable scrolling.
 	  		enableScrolling(true);
 	  	}
@@ -318,9 +333,10 @@ export const OverlayMixin = superClass => {
 
 
   	reset(type = 'reset') {
-	    this.style.display   = 'none';
-	    this.style.opacity   = '0';
-	    this.style.transform = 'none';
+	    this.style['display']   = 'none';
+	    this.style['opacity']   = '0';
+	    this.style['transform'] = 'none';
+
 	    this.__resetImplementation();
 	    this.fire('overlay-reset', {node: this, type});
 	  }
