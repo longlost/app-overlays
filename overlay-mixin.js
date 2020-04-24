@@ -27,6 +27,14 @@ export const OverlayMixin = superClass => {
 	  static get properties() {
 	    return {
 
+	    	// While in modal mode, the overlay can measure its height 
+	    	// relative to the bottom of the screen (default),
+	    	// or it can mearsure its height realtive to the visible 
+	    	// portion of the screen that is above iOS Safari's 
+	    	// bottom nav bar.
+	    	// 'modal' property MUST be set for this to take effect.
+	    	aboveSafariNav: Boolean,
+
 	      // Object with custom entry and exit animation collections.
 	      customAnimation: Object,
 
@@ -259,19 +267,18 @@ export const OverlayMixin = superClass => {
 
 	  	if (this.modal) {
 
-	  		// Disable scrolling.
-	  		//
-	  		// Not using min-height here since it
-	  		// is breaks on mobile Safari since its
-	  		// bottom nav bar is not factored in.
-	  		this.style['position']   = 'fixed';
-	  		this.style['top'] 			 = '0px';
-	  		this.style['right'] 		 = '0px';
-	  		this.style['bottom'] 		 = '0px';
-	  		this.style['left'] 			 = '0px';
-	  		this.style['min-height'] = 'unset';
-	  		this.style['width'] 		 = 'unset';
-	  		this.style['padding'] 	 = '0px';
+	  		// These styles applied to fill the screen.	  		
+	  		this.style['position'] = 'fixed';
+	  		this.style['padding']  = '0px';
+
+	  		// Use 'bottom' instead of 'min-height'
+	  		// here in order to measure mobile Safari's
+	  		// bottom nav bar.
+	  		if (this.aboveSafariNav) {
+		  		this.style['bottom'] 		 = '0px';
+		  		this.style['height'] 		 = 'unset';
+		  		this.style['min-height'] = 'unset';
+	  		}
 
 	  		enableScrolling(false);
 	  	}
