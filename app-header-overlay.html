@@ -3,6 +3,7 @@
 
   :host {
     --overlay-background-color:                   var(--app-background-color);
+    --overlay-toolbar-backdrop-filter:            none;
     --overlay-toolbar-background-color:           var(--app-dark-color);
     --overlay-toolbar-color:                      var(--constant-light-text, white);
     --overlay-toolbar-pointer-events:             auto;
@@ -38,11 +39,13 @@
   }
 
   app-header {
-    width:            100%;
-    will-change:      transform;
-    pointer-events:   var(--overlay-toolbar-pointer-events);
-    background-color: var(--overlay-toolbar-background-color);
-    color:            var(--overlay-toolbar-color);
+    width:                   100%;
+    will-change:             transform;
+    pointer-events:          var(--overlay-toolbar-pointer-events);
+    -webkit-backdrop-filter: var(--overlay-toolbar-backdrop-filter);
+    backdrop-filter:         var(--overlay-toolbar-backdrop-filter);
+    background-color:        var(--overlay-toolbar-background-color);
+    color:                   var(--overlay-toolbar-color);
   }
 
   .title {
