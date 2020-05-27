@@ -18,9 +18,9 @@
   "homepage": "https://github.com/longlost/app-overlays#readme",
   "dependencies": {
     "@longlost/animation": "^2.0.0",
-    "@longlost/app-element": "^1.1.1",
+    "@longlost/app-element": "^2.0.0",
     "@longlost/app-icons": "^1.0.12",
-    "@longlost/app-shared-styles": "^2.0.13",
+    "@longlost/app-shared-styles": "^2.0.14",
     "@longlost/utils": "^1.4.0",
     "@polymer/app-layout": "^3.1.0",
     "@polymer/paper-card": "^3.0.1",
