@@ -5,7 +5,7 @@
     --overlay-background-color:                   var(--app-background-color);
     --overlay-toolbar-backdrop-filter:            none;
     --overlay-toolbar-background-color:           var(--app-dark-color);
-    --overlay-toolbar-color:                      var(--constant-light-text, white);
+    --overlay-toolbar-color:                      var(--app-dark-color-text, white);
     --overlay-toolbar-pointer-events:             auto;
     --overlay-toolbar-background-parallax-height: 140%;
     --overlay-toolbar-vignette-background:        radial-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
@@ -97,8 +97,6 @@
     left:          -5px; /* iOS hack. */
     right:         -5px; /* iOS hack. */
     pointer-events: none;
-
-    /* Backward compat with older name. */
     opacity:        var(--overlay-toolbar-vignette-opacity);
     background:     var(--overlay-toolbar-vignette-background);
   }
