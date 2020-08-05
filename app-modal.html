@@ -41,6 +41,10 @@
   #card-content {
     max-height: calc(100vh - 174px);
     overflow-y: auto;
+
+    /* Enable iOS mobile scrolling. */
+    -webkit-overflow-scrolling: touch; 
+    
     --paper-card-content: {
       padding: var(--modal-card-content-padding);
     };
