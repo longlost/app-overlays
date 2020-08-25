@@ -2,7 +2,7 @@
 /**
   * `app-modal`
   *
-  * 	Configurable full-screen modal element.
+  *   Configurable full-screen modal element.
   *
   * @customElement
   * @polymer
@@ -12,17 +12,9 @@
   **/
 
 
-import {
-  AppElement, 
-  html
-}                 from '@longlost/app-element/app-element.js';
-import {
-  consumeEvent,
-  listen, 
-  schedule,
-  unlisten
-}                 from '@longlost/utils/utils.js';
-import htmlString from './app-modal.html';
+import {AppElement, html}       from '@longlost/app-element/app-element.js';
+import {consumeEvent, schedule} from '@longlost/utils/utils.js';
+import htmlString               from './app-modal.html';
 import '@longlost/app-shared-styles/app-shared-styles.js';
 import '@polymer/paper-card/paper-card.js';
 import './app-overlay.js';
@@ -46,8 +38,6 @@ class AppModal extends AppElement {
 
       heading: String,
 
-      _exitingListenerKey: Object,
-
       _hideCardActions: {
         type: Boolean,
         value: true
@@ -56,9 +46,7 @@ class AppModal extends AppElement {
       _hideCardContent: {
         type: Boolean,
         value: true
-      },
-
-      _resetListenterKey: Object
+      }
 
     };
   }
@@ -69,19 +57,19 @@ class AppModal extends AppElement {
 
     // Prevent event from passing up to app-main, 
     // causing the underlay to be translated down.
-    this._exitingListenerKey = listen(this, 'overlay-exiting', consumeEvent);
+    this.addEventListener('overlay-exiting', consumeEvent);
 
     // Do not allow events to be mixed with 
     // parent's own overlay through bubbling.
-    this._resetListenterKey = listen(this, 'overlay-reset', consumeEvent);
+    this.addEventListener('overlay-reset', consumeEvent);
   }
 
 
   disconnectedCallback() {
-  	super.disconnectedCallback();
+    super.disconnectedCallback();
 
-  	unlisten(this._exitingListenerKey);
-  	unlisten(this._resetListenterKey);
+    this.removeEventListener('overlay-exiting', consumeEvent);
+    this.removeEventListener('overlay-reset',   consumeEvent);
   }
 
 

@@ -87,23 +87,17 @@
   *     reset()
   *
   *
+  * @customElement
+  * @polymer
+  * @demo demo/index.html
+  *
   **/
 
 
-import {
-  AppElement, 
-  html
-}                 from '@longlost/app-element/app-element.js';
-import {
-  OverlayMixin
-}                 from './overlay-mixin.js';
-import {
-  getRootTarget,
-  listen,
-  schedule,
-  unlisten
-}                 from '@longlost/utils/utils.js';
-import htmlString from './app-header-overlay.html';
+import {AppElement, html}        from '@longlost/app-element/app-element.js';
+import {OverlayMixin}            from './overlay-mixin.js';
+import {getRootTarget, schedule} from '@longlost/utils/utils.js';
+import htmlString                from './app-header-overlay.html';
 import '@longlost/app-icons/app-icons.js';
 import '@polymer/app-layout/app-header-layout/app-header-layout.js';
 import '@polymer/app-layout/app-header/app-header.js';
@@ -221,9 +215,6 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
         computed: '__computeHeaderScrollThreashold(headerSize)'
       },
 
-      // Used for unlisten api.
-      _scrollKey: String,
-
       // Used to dynamically apply app-header effects without console warnings.
       _titleDiv: Object,
 
@@ -278,6 +269,13 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
     super.connectedCallback();
     
     this.__setupAfterDomIfStamps();
+  }
+
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+
+    document.removeEventListener('scroll', this.__scrollHandler.bind(this));
   }
 
 
@@ -398,12 +396,13 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
   __setupAfterDomIfStamps() {
 
-    this.addEventListener('dom-change', async (event, key) => {
+    const domChangeHandler = async event => {
 
       const templateId = getRootTarget(event).id;
 
       if (templateId === 'smallHeaderDomIf' || templateId === 'tallHeaderDomIf') {
-        unlisten(key);
+        this.removeEventListener('dom-change', domChangeHandler);
+        
         this.header  = this.select('#overlayHeader');
         this.content = this.select('#overlayContent');        
         this.__setHeaderAttribute(!this.disableCondense, 'condenses');
@@ -465,7 +464,9 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
         }
       }
-    });
+    };
+
+    this.addEventListener('dom-change', domChangeHandler);
   }
 
 
@@ -544,6 +545,24 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
   }
 
 
+  __scrollSetup() {
+    const {progress, top} = this.header.getScrollState();
+
+    if (this._headerIsTall) {
+      this.__toggleButtonsWithHeaderState(progress);
+
+      if (this._toolbarBackgroundNodePresent && !this.disableBackgroundEffects) {
+        this.__controlToolbarBackgroundEffects(progress, top);
+      }
+    }
+  }
+
+
+  __scrollHandler() {
+    window.requestAnimationFrame(this.__scrollSetup.bind(this));
+  }
+
+
   async __setupToolbarButtonScrollAction() {
 
     // Avoid race condition with first open and dom-if stamping.
@@ -560,26 +579,12 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
         this._toolbarBackgroundParallax.getBoundingClientRect().height;
     }
 
-    const setup = () => {
-      const {progress, top} = this.header.getScrollState();
-
-      if (this._headerIsTall) {
-        this.__toggleButtonsWithHeaderState(progress);
-
-        if (this._toolbarBackgroundNodePresent && !this.disableBackgroundEffects) {
-          this.__controlToolbarBackgroundEffects(progress, top);
-        }
-      }
-    };
-
     // Wait for header to finish scrolling.
     await schedule();
 
-    this._scrollKey = listen(document, 'scroll', () => {
-      window.requestAnimationFrame(setup);
-    });
+    document.addEventListener('scroll', this.__scrollHandler.bind(this));
 
-    setup();
+    this.__scrollSetup();
   }
 
 
@@ -594,11 +599,6 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
     }
 
     return slots;
-  }
-
-
-  __cancelToolbarButtonScrollAction(key) {
-    unlisten(key);
   }
 
 
@@ -643,7 +643,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
       this._fabContainer.style.willChange = 'auto';
     }
 
-    this.__cancelToolbarButtonScrollAction(this._scrollKey);
+    document.removeEventListener('scroll', this.__scrollHandler.bind(this));
   }
 
 
