@@ -265,6 +265,13 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
   }
 
 
+  constructor() {
+    super();
+
+    this.__scrollHandler = this.__scrollHandler.bind(this);
+  }
+
+
   connectedCallback() {
     super.connectedCallback();
     
@@ -275,7 +282,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    document.removeEventListener('scroll', this.__scrollHandler.bind(this));
+    document.removeEventListener('scroll', this.__scrollHandler);
   }
 
 
@@ -582,7 +589,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
     // Wait for header to finish scrolling.
     await schedule();
 
-    document.addEventListener('scroll', this.__scrollHandler.bind(this));
+    document.addEventListener('scroll', this.__scrollHandler);
 
     this.__scrollSetup();
   }
@@ -643,7 +650,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
       this._fabContainer.style.willChange = 'auto';
     }
 
-    document.removeEventListener('scroll', this.__scrollHandler.bind(this));
+    document.removeEventListener('scroll', this.__scrollHandler);
   }
 
 
