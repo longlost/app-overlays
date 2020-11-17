@@ -49,11 +49,15 @@
   }
 
   .title {
-    @apply --title-mixin;
+    font-size: 1.5em;
   }
 
-  .noSelect {
-    @apply --no-select-mixin;
+  .no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select:   none;
+    -moz-user-select:      none;
+    -ms-user-select:       none;
+    user-select:           none;
   }
 
   .title-margin {
@@ -178,7 +182,7 @@
         </paper-icon-button>
 
         <div id="overlayTitleDiv" 
-             class="noSelect push-right truncate">
+             class="no-select push-right truncate">
           [[title]]
         </div>
 
@@ -208,7 +212,7 @@
       <app-toolbar id="bottomToolbar">
 
         <div id="bottomToolbarTextDiv" 
-             class$="noSelect truncate [[__computeBottomTitleClass(bottomToolbarText)]]" 
+             class$="no-select truncate [[__computeBottomTitleClass(bottomToolbarText)]]" 
              hidden="[[_headerHasTabs]]">
           [[__computeBottomToolbarText(bottomToolbarText, title, topTitle)]]
         </div>
@@ -261,7 +265,7 @@
         </paper-icon-button>
         
         <div main-title 
-             class="noSelect push-right truncate">
+             class="no-select push-right truncate">
           [[title]]
         </div>
 
