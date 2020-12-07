@@ -1,6 +1,6 @@
 {
   "name": "@longlost/app-overlays",
-  "version": "1.3.9",
+  "version": "1.3.10",
   "description": "A mono repo containing common types of reusable overlay elements.",
   "main": "index.js",
   "scripts": {
