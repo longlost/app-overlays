@@ -16,8 +16,8 @@
   **/
 
 
-import {enableScrolling, schedule} from '@longlost/utils/utils.js';
-import {customAnimation} 	 				 from '@longlost/animation/animation.js';
+import {enableScrolling, schedule} from '@longlost/app-core/utils.js';
+import {customAnimation} 	 				 from '@longlost/app-core/animation.js';
 
 
 export const OverlayMixin = superClass => {
