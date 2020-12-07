@@ -94,11 +94,11 @@
   **/
 
 
-import {AppElement, html}        from '@longlost/app-element/app-element.js';
+import {AppElement, html}        from '@longlost/app-core/app-element.js';
 import {OverlayMixin}            from './overlay-mixin.js';
-import {getRootTarget, schedule} from '@longlost/utils/utils.js';
+import {getRootTarget, schedule} from '@longlost/app-core/utils.js';
 import htmlString                from './app-header-overlay.html';
-import '@longlost/app-icons/app-icons.js';
+import '@longlost/app-core/app-icons.js';
 import '@polymer/app-layout/app-header-layout/app-header-layout.js';
 import '@polymer/app-layout/app-header/app-header.js';
 import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
