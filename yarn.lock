@@ -243,10 +243,10 @@
     lodash.camelcase "^4.3.0"
     protobufjs "^6.8.6"
 
-"@longlost/app-core@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@longlost/app-core/-/app-core-1.0.0.tgz#d813f9f9f76c19d067069e8679b2e0cb178cdc66"
-  integrity sha512-rYyJzGO9uSbrCWyjOBtijQiQEmuurMOda0oyx1treb3PUSFkKcHmF3B0PBV4zwtV9D+8z2bJ+B3Mq4IyncUkdw==
+"@longlost/app-core@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@longlost/app-core/-/app-core-1.1.1.tgz#0b9c24a7eafa23e449e3482683176013855f9133"
+  integrity sha512-InHtobwngPLv4WXOkpBZcuCXm4xwFBi80tYi1OO4UgBGbllJ06A6JXxeBr/XzXLvgAscQXDCtc4PEcb3cJVeZg==
   dependencies:
     "@polymer/iron-iconset-svg" "^3.0.1"
     "@polymer/paper-styles" "^3.0.1"
