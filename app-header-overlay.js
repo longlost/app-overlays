@@ -1,90 +1,102 @@
 
 /**
   *
-  * `app-header-overlay``
+  * `app-header-overlay`
+  *
+  *
   *   
   *   Styling:
-  *   
-  *   --overlay-background-color:                   default --app-background-color  
-  *   --overlay-toolbar-color:                      default --light-text-color
-  *   --overlay-toolbar-background-color:           default --app-dark-color
-  *   --overlay-toolbar-background-parallax-height: default 140% / set to 100% when disableParallax is true
-  *   --overlay-toolbar-background-cover-opacity:   Deprecated. Use --overlay-toolbar-vignette-opacity
-  *   --overlay-toolbar-vignette-opacity:           default 0.3
-  *   --overlay-toolbar-vignette-background:        default radial-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
+  *
+  *
+  *     --background-color:                  var(--app-background-color);    
+  *     --bottom-toolbar-text-width:         100%;
+  *     --header-backdrop-filter:            none;
+  *     --header-background-color:           var(--app-primary-dark-color);
+  *     --header-background-parallax-height: 140%;
+  *     --header-color:                      var(--app-primary-dark-color-text, white);
+  *     --header-pointer-events:             auto;
+  *     --header-shadow:                     inset 0px 5px 6px -3px rgb(0 0 0 / 40%);
+  *     --header-vignette-background:        radial-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
+  *     --header-vignette-opacity:           0.3;
+  *
   *
   *
   *   Slots:
+  *
   *   
-  *   header-background-slot      element that will be placed in the header background and
-  *                               get parallax and fade-on-scroll effects, typically an image
+  *     header-background-slot      element that will be placed in the header background and
+  *                                 get parallax and fade-on-scroll effects, typically an image
   *
-  *   top-toolbar-buttons-slot    upper-right icon buttons go here
+  *     top-toolbar-buttons-slot    upper-right icon buttons go here
   *   
-  *   middle-toolbar-${i}-slot    middle toolbar slots that are created dynamically based
-  *                               off header height, one for every toolbar over the top and bottom
+  *     middle-toolbar-${i}-slot    middle toolbar slots that are created dynamically based
+  *                                 off header height, one for every toolbar over the top and bottom
   *
-  *   bottom-toolbar-buttons-slot lower-right icon buttons go here
+  *     bottom-toolbar-buttons-slot lower-right icon buttons go here
   *
-  *   bottom-toolbar-tabs-slot    tabs go here
+  *     bottom-toolbar-tabs-slot    tabs go here
   * 
-  *   fab-slot                    fab that is placed near the right side, half way over the bottom
-  *                               toolbar and content
+  *     fab-slot                    fab that is placed near the right side, half way over the bottom
+  *                                 toolbar and content
   *
-  *   content                     all non-header elements go here
+  *     content                     all non-header elements go here
+  *
+  *
   *
   *
   *   Api:
   *
+  *
   *     Properties:
   *
   *
-  *     bottomToolbarText <String> '',        lower-left toolbar text
+  *       bottomToolbarText <String> '',        lower-left toolbar text
   *
-  *     closeButton <Boolean>                 undefined, includes a close button in upper-right toolbar when true
+  *       closeButton <Boolean>                 undefined, includes a close button in upper-right toolbar when true
   *
-  *     disableAutoSticky <Boolean>           when true, skip setting bottom toolbar to sticky automatically based
-  *                                           off bottom toolbar contents or lack thereof
+  *       disableAutoSticky <Boolean>           when true, skip setting bottom toolbar to sticky automatically based
+  *                                             off bottom toolbar contents or lack thereof
   *
-  *     disableCondense <Boolean> false,      removes condenses attribute on header
+  *       disableCondense <Boolean> false,      removes condenses attribute on header
   *
-  *     disableParallax <Boolean> undefined,  turn off header-background-slot container's parallax effect
+  *       disableParallax <Boolean> undefined,  turn off header-background-slot container's parallax effect
   *
-  *     disableWarnings <Boolean> undefined,  quelsh warnings about having too many items in the bottom toolbar
+  *       disableWarnings <Boolean> undefined,  quelsh warnings about having too many items in the bottom toolbar
   *
-  *     fixedHeader <Boolean>  undefined,     fixes the top toolbar by default, use in conjunction with
-  *                                           stickyBottomToolbar to create different effects
+  *       fixedHeader <Boolean>  undefined,     fixes the top toolbar by default, use in conjunction with
+  *                                             stickyBottomToolbar to create different effects
   *
-  *     headerSize <Number> 1,                multiple of toolbars to give the header
+  *       headerSize <Number> 1,                multiple of toolbars to give the header
   *
-  *     parentControlsExits <Boolean>,        when true, header will not close itself with back/close buttons 
+  *       parentControlsExits <Boolean>,        when true, header will not close itself with back/close buttons 
   *
-  *     resetScroll <Boolean> undefined,      set scroll to 0 and place header back to initial state each time the
-  *                                           overlay is opened
+  *       resetScroll <Boolean> undefined,      set scroll to 0 and place header back to initial state each time the
+  *                                             overlay is opened
   *
-  *     revealHeader <Boolean> undefined,     header comes into view when scrolling back to top
+  *       revealHeader <Boolean> undefined,     header comes into view when scrolling back to top
   *
-  *     stickyBottomToolbar <Boolean>,        pin bottom toolbar instead of top toolbar during scroll
+  *       stickyBottomToolbar <Boolean>,        pin bottom toolbar instead of top toolbar during scroll
   *
-  *     threshold <Number> 0,                 used to control when a 'threshold-triggered-changed' event is fired
-  *                                           based on header scroll position
+  *       threshold <Number> 0,                 used to control when a 'threshold-triggered-changed' event is fired
+  *                                             based on header scroll position
   *
-  *     title <String> 'Title',               header main-title that will resize from bottom toolbar to top on scroll
-  *                                           if topTitle is false and/or no bottomToolbarText is present
+  *       title <String> 'Title',               header main-title that will resize from bottom toolbar to top on scroll
+  *                                             if topTitle is false and/or no bottomToolbarText is present
   *
-  *     topTitle <Boolean> undefined,         override standard title condense effect (from bottom toolbar to top)
-  *                                           and pin title to top toolbar
+  *       topTitle <Boolean> undefined,         override standard title condense effect (from bottom toolbar to top)
+  *                                             and pin title to top toolbar
   *
   *
   *
   *     Methods:
-  *     
-  *     inherited from overlay-mixin:
   *
-  *     back()
-  *     close()
-  *     open()
-  *     reset()
+  *     
+  *       Inherited from overlay-mixin.
+  *
+  *       back()
+  *       close()
+  *       open()
+  *       reset()
   *
   *
   * @customElement
@@ -108,6 +120,7 @@ import '@polymer/paper-icon-button/paper-icon-button.js';
 
 
 class AppHeaderOverlay extends OverlayMixin(AppElement) {
+
   static get is() { return 'app-header-overlay'; }
 
   static get template() {
@@ -266,6 +279,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   constructor() {
+
     super();
 
     this.__scrollHandler = this.__scrollHandler.bind(this);
@@ -273,6 +287,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   connectedCallback() {
+
     super.connectedCallback();
     
     this.__setupAfterDomIfStamps();
@@ -280,6 +295,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   disconnectedCallback() {
+
     super.disconnectedCallback();
 
     document.removeEventListener('scroll', this.__scrollHandler);
@@ -287,11 +303,13 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __computeBottomTitleClass(bottomToolbarText) {
+
     return bottomToolbarText ? '' : 'title title-margin';
   }
 
 
   __computeBottomToolbarText(bottomToolbarText, title, topTitle) {
+
     if (topTitle) { return bottomToolbarText; }
     
     return bottomToolbarText ? bottomToolbarText : title;
@@ -299,6 +317,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
   
   __computeHeaderIsTall(headerSize) {
+
     if (headerSize === undefined) { return; }
 
     return headerSize > 1;
@@ -306,6 +325,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __computeHeaderScrollThreashold(headerSize) {
+
     if (headerSize === undefined) { return; }
 
     return 1 - (1 / headerSize);
@@ -313,6 +333,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __computeParallaxTravel(parallaxHeight, headerHeight) {
+
     if (parallaxHeight === undefined || headerHeight === undefined) { return; }
 
     return (parallaxHeight - headerHeight) / 2;
@@ -320,6 +341,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __setHeaderAttribute(bool, attr) {
+
     if (bool === undefined) { return; }
 
     if (!this.header) { return; }
@@ -334,30 +356,35 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __disableCondenseChanged(bool) {
+
     this.__setHeaderAttribute(!bool, 'condenses');
   }
 
 
   __fixedHeaderChanged(bool) {
+
     this.__setHeaderAttribute(bool, 'fixed');
   }
 
 
   __revealHeaderChanged(bool) {
+
     this.__setHeaderAttribute(bool, 'reveals');
   }
 
 
   __disableParallaxChanged(bool) {
+
     if (!bool) { return; }
 
     this.updateStyles({
-      '--overlay-toolbar-background-parallax-height': '100%'
+      '--header-background-parallax-height': '100%'
     });
   }
 
   // Imperitively set header effects to avoid warnings from app-header effects engine.
   __bottomToolbarContentChanged(bottomToolbarText, headerHasTabs, header, title, container, topTitle) {
+
     if (!header || !title || !container) { return; }
 
     if (bottomToolbarText || headerHasTabs || topTitle) {
@@ -374,6 +401,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __setStickyToolbar(stickyBottomToolbar, disableAutoSticky, headerHasTabs, header, topToolbar, bottomToolbar) {
+
     if (!header || !topToolbar || !bottomToolbar) { return; }
 
     if ((stickyBottomToolbar || headerHasTabs) && !disableAutoSticky) {
@@ -390,6 +418,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __setHeaderBackgroundContainerDisplay(headerHasBackgroundContent, container) {
+
     if (container === undefined) { return; }
 
     if (headerHasBackgroundContent) {
@@ -408,6 +437,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
       const templateId = getRootTarget(event).id;
 
       if (templateId === 'smallHeaderDomIf' || templateId === 'tallHeaderDomIf') {
+
         this.removeEventListener('dom-change', domChangeHandler);
         
         this.header  = this.select('#overlayHeader');
@@ -417,6 +447,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
         this.__setHeaderAttribute(this.revealHeader,     'reveals');
 
         if (templateId === 'tallHeaderDomIf') {
+
           const bottomToolbarButtonsPresent  = this.slotHasNodes('#bottomToolbarButtonsSlot');
           this._headerFabPresent             = this.slotHasNodes('#fabSlot');
           this._headerHasTabs                = this.slotHasNodes('#bottomToolbarTabsSlot');
@@ -478,6 +509,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __placeFab() {
+
     const halfFabHeight = 28;
     const top           = this._headerHeight - halfFabHeight;
     this._fabContainer.style.top = `${top}px`;
@@ -489,9 +521,11 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __toggleButtonsWithHeaderState(progress) {
+
     const threshold = progress > this._headerScrollThreshold;
 
     if (this._bottomToolbarButtonsContainer && !this.stickyBottomToolbar) {
+
       if (threshold) {
         this._bottomToolbarButtonsContainer.classList.add('fade-out');
       } 
@@ -500,6 +534,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
       }
     } 
     else if (this._fabContainer) {
+
       if (threshold) {
         this._fabContainer.classList.add('shrink-to-hidden');
       } 
@@ -511,6 +546,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
   // Fade and parallax background on scroll.
   __controlToolbarBackgroundEffects(progress, top) {
+
     const fade     = progress <= 1 ? 1 - progress : 0;
     const parallax = this._parallaxTravel * progress;
 
@@ -522,6 +558,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
     const size      = this.headerSize;
     const finalSize = 1 / size;
     const scale     = ((size - 1) * fade) / size + finalSize;
+
     this._toolbarBackgroundVignette.style.transform = `translateY(${top / 2}px) scaleY(${scale})`;
     this._toolbarBackgroundContainer.style.opacity  = `${fade}`;
 
@@ -530,7 +567,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
     }
 
     if (this.bottomToolbarText) {
-      const textFade = Math.pow(fade, 3);
+      const textFade = Math.pow(fade, 3);      
       this._bottomToolbarTextDiv.style.opacity = `${textFade}`;
     }
 
@@ -553,12 +590,15 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __scrollSetup() {
+
     const {progress, top} = this.header.getScrollState();
 
     if (this._headerIsTall) {
+
       this.__toggleButtonsWithHeaderState(progress);
 
       if (this._toolbarBackgroundNodePresent && !this.disableBackgroundEffects) {
+
         this.__controlToolbarBackgroundEffects(progress, top);
       }
     }
@@ -566,6 +606,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __scrollHandler() {
+
     window.requestAnimationFrame(this.__scrollSetup.bind(this));
   }
 
@@ -596,6 +637,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __createMiddleToolbars(headerSize) {
+
     if (headerSize < 3) { return []; }
 
     const middleToobarCount = headerSize - 2;
@@ -610,11 +652,13 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   __headerThresholdTriggered(event) {
+
     this.fire('header-overlay-threshold-triggered-changed', event.detail);
   }
 
   // Called by overlay-control-mixin if resetScroll is true.
   resetHeaderParallaxContainer() {
+
     if (!this._toolbarBackgroundVignette) { return; }
 
     this._toolbarBackgroundVignette.style.transform = '';
@@ -628,6 +672,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
   // where heaer height is always zero, throwing off fab placement and
   // parallax effect.
   __preOpenImplementation() {
+
     this._headerHeight  = this.header.getBoundingClientRect().height;
 
     if (this._headerFabPresent) {
@@ -639,7 +684,9 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
   // Overwriting overlay-mixin method.
   __postOpenImplementation() {
+
     this.__setupToolbarButtonScrollAction();
+
     return Promise.resolve();
   }
 
@@ -655,11 +702,14 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   async __backButtonClicked(event) {
+
     try {
       await this.clicked();
 
       if (this.parentControlsExits) {
+
         this.fire('header-overlay-back', {clickEvent: event, node: this});
+
         return;
       }
 
@@ -673,11 +723,14 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
 
   async __closeButtonClicked(event) {
+
     try {
       await this.clicked();
 
       if (this.parentControlsExits) {
+
         this.fire('header-overlay-close', {clickEvent: event, node: this});
+
         return;
       }
 
