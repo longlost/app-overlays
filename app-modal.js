@@ -15,12 +15,13 @@
 import {AppElement, html}       from '@longlost/app-core/app-element.js';
 import {consumeEvent, schedule} from '@longlost/app-core/utils.js';
 import htmlString               from './app-modal.html';
-import '@longlost/app-core/app-shared-styles.js';
+import '@longlost/app-core/app-shared-styles.css';
 import '@polymer/paper-card/paper-card.js';
 import './app-overlay.js';
 
 
 class AppModal extends AppElement {
+  
   static get is() { return 'app-modal'; }
 
   static get template() {
@@ -53,6 +54,7 @@ class AppModal extends AppElement {
   
 
   connectedCallback() {
+
     super.connectedCallback();
 
     // Prevent event from passing up to app-main, 
@@ -66,6 +68,7 @@ class AppModal extends AppElement {
 
 
   disconnectedCallback() {
+
     super.disconnectedCallback();
 
     this.removeEventListener('overlay-exiting', consumeEvent);
@@ -73,22 +76,26 @@ class AppModal extends AppElement {
   }
 
 
-  __actionsSlotChange() {    
+  __actionsSlotChange() { 
+
     this._hideCardActions = !this.slotHasNodes('#actionsSlot');
   }
 
 
   __contentSlotChange() {
+
     this._hideCardContent = !this.slotHasNodes('#contentSlot');
   }
 
   // Ignore card clicks.
   __cardClicked(event) {
+
     consumeEvent(event);
   }
 
 
   async back() {
+
     this.style.opacity = '0';
     await this.$.overlay.back();
     this.style.display = 'none';
@@ -96,6 +103,7 @@ class AppModal extends AppElement {
 
 
   async close() {
+
     this.style.opacity = '0';
     await this.$.overlay.close();
     this.style.display = 'none';
@@ -103,6 +111,7 @@ class AppModal extends AppElement {
 
 
   async open() {
+
     this.style.display = 'block';
     await schedule();
     this.style.opacity = '1';
@@ -111,6 +120,7 @@ class AppModal extends AppElement {
 
 
   reset() {
+
     this.style.opacity = '0';
     this.style.display = 'none';
     this.$.overlay.reset();
