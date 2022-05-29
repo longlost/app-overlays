@@ -32,17 +32,18 @@
   */
 
 
-import {AppElement, html} from '@longlost/app-core/app-element.js';
-import {OverlayMixin}     from './overlay-mixin.js';
-import htmlString         from './app-overlay.html';
+import {AppElement}   from '@longlost/app-core/app-element.js';
+import {OverlayMixin} from './overlay-mixin.js';
+import template       from './app-overlay.html';
 
 
 class AppOverlay extends OverlayMixin(AppElement) {
+
   static get is() { return 'app-overlay'; }
   
 
   static get template() {
-    return html([htmlString]);
+    return template;
   }
   
 }

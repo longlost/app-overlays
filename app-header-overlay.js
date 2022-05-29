@@ -106,10 +106,10 @@
   **/
 
 
-import {AppElement, html}        from '@longlost/app-core/app-element.js';
+import {AppElement}              from '@longlost/app-core/app-element.js';
 import {OverlayMixin}            from './overlay-mixin.js';
 import {getRootTarget, schedule} from '@longlost/app-core/utils.js';
-import htmlString                from './app-header-overlay.html';
+import template                  from './app-header-overlay.html';
 import '@longlost/app-core/app-icons.js';
 import '@polymer/app-layout/app-header-layout/app-header-layout.js';
 import '@polymer/app-layout/app-header/app-header.js';
@@ -124,7 +124,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
   static get is() { return 'app-header-overlay'; }
 
   static get template() {
-    return html([htmlString]);
+    return template;
   }
 
 
@@ -512,6 +512,7 @@ class AppHeaderOverlay extends OverlayMixin(AppElement) {
 
     const halfFabHeight = 28;
     const top           = this._headerHeight - halfFabHeight;
+    
     this._fabContainer.style.top = `${top}px`;
 
     // Opacity hides flicker of fab before 
