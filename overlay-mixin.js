@@ -57,6 +57,7 @@ export const OverlayMixin = superClass => {
 	  
 
 	  connectedCallback() {
+
 	  	super.connectedCallback();
 
 	  	if (!this.customAnimation) { 
@@ -241,11 +242,13 @@ export const OverlayMixin = superClass => {
 
 	  // Can be overwritten for implementation specific logic.
 	  __exitImplementation() {
+
 	  	return;
 	  }
 
 
 	  async __playExitAnimation(type) {
+
   		try {
 	      this.fire('overlay-preparing-to-exit', {node: this, type});
 
@@ -288,11 +291,13 @@ export const OverlayMixin = superClass => {
 
 	  // Can be overwritten for implementation specific logic.
 	  __postOpenImplementation() {
+
 	  	return Promise.resolve();
 	  }
 
 	  
 	  async open() {
+
       try {
       	const detail = {node: this};
 
@@ -320,11 +325,13 @@ export const OverlayMixin = superClass => {
 
 	  // Returns a promise.
 	  back() {
+
 	    return this.__playExitAnimation('back');
 	  }
 	  
 	  // Returns a promise.
 	  close() {
+
 	    return this.__playExitAnimation('close');
 	  }
 
@@ -340,6 +347,7 @@ export const OverlayMixin = superClass => {
 
 
   	reset(type = 'reset') {
+  		
 	    this.style['display']   = 'none';
 	    this.style['opacity']   = '0';
 	    this.style['transform'] = 'none';

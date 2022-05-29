@@ -12,9 +12,9 @@
   **/
 
 
-import {AppElement, html}       from '@longlost/app-core/app-element.js';
+import {AppElement}             from '@longlost/app-core/app-element.js';
 import {consumeEvent, schedule} from '@longlost/app-core/utils.js';
-import htmlString               from './app-modal.html';
+import template                 from './app-modal.html';
 import '@longlost/app-core/app-shared-styles.css';
 import '@polymer/paper-card/paper-card.js';
 import './app-overlay.js';
@@ -25,7 +25,7 @@ class AppModal extends AppElement {
   static get is() { return 'app-modal'; }
 
   static get template() {
-    return html([htmlString]);
+    return template;
   }
 
 
